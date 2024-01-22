@@ -1,5 +1,5 @@
 # curso_r
-Este repositorio serve para almanecar as sesións do **Curso de R** impartido no *INEGA*.
+Este repositorio serve para almanecar as sesións do **Curso de R** impartido no *IDEGA*.
 
 ## Sesión 1
 
