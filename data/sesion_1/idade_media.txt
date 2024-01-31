@@ -1,0 +1,3 @@
+"Sexo" "Idade_media"
+"1" "Hombre" 48.9
+"2" "Mujer" 50.4347826086956
