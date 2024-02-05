@@ -1,0 +1,1020 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="author" content="Antón Blanco Vilariño" />
+  <title>Curso de R</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="sesion_2_files/reveal.js-3.3.0.1/css/reveal.css"/>
+
+
+
+<link rel="stylesheet" href="sesion_2_files/reveal.js-3.3.0.1/css/theme/moon.css" id="theme">
+
+<style type="text/css">
+.reveal section img {
+  background: rgba(255, 255, 255, 0.85);
+}
+</style>
+
+  <!-- some tweaks to reveal css -->
+  <style type="text/css">
+    .reveal h1 { font-size: 2.0em; }
+    .reveal h2 { font-size: 1.5em;  }
+    .reveal h3 { font-size: 1.25em;	}
+    .reveal h4 { font-size: 1em;	}
+
+    .reveal .slides>section,
+    .reveal .slides>section>section {
+      padding: 0px 0px;
+    }
+
+
+
+    .reveal table {
+      border-width: 1px;
+      border-spacing: 2px;
+      border-style: dotted;
+      border-color: gray;
+      border-collapse: collapse;
+      font-size: 0.7em;
+    }
+
+    .reveal table th {
+      border-width: 1px;
+      padding-left: 10px;
+      padding-right: 25px;
+      font-weight: bold;
+      border-style: dotted;
+      border-color: gray;
+    }
+
+    .reveal table td {
+      border-width: 1px;
+      padding-left: 10px;
+      padding-right: 25px;
+      border-style: dotted;
+      border-color: gray;
+    }
+
+
+  </style>
+
+    <style type="text/css">code{white-space: pre;}</style>
+
+    <link rel="stylesheet" href="titulo.css"/>
+
+<!-- Printing and PDF exports -->
+<script id="paper-css" type="application/dynamic-css">
+
+/* Default Print Stylesheet Template
+   by Rob Glazebrook of CSSnewbie.com
+   Last Updated: June 4, 2008
+
+   Feel free (nay, compelled) to edit, append, and
+   manipulate this file as you see fit. */
+
+
+@media print {
+
+	/* SECTION 1: Set default width, margin, float, and
+	   background. This prevents elements from extending
+	   beyond the edge of the printed page, and prevents
+	   unnecessary background images from printing */
+	html {
+		background: #fff;
+		width: auto;
+		height: auto;
+		overflow: visible;
+	}
+	body {
+		background: #fff;
+		font-size: 20pt;
+		width: auto;
+		height: auto;
+		border: 0;
+		margin: 0 5%;
+		padding: 0;
+		overflow: visible;
+		float: none !important;
+	}
+
+	/* SECTION 2: Remove any elements not needed in print.
+	   This would include navigation, ads, sidebars, etc. */
+	.nestedarrow,
+	.controls,
+	.fork-reveal,
+	.share-reveal,
+	.state-background,
+	.reveal .progress,
+	.reveal .backgrounds {
+		display: none !important;
+	}
+
+	/* SECTION 3: Set body font face, size, and color.
+	   Consider using a serif font for readability. */
+	body, p, td, li, div {
+		font-size: 20pt!important;
+		font-family: Georgia, "Times New Roman", Times, serif !important;
+		color: #000;
+	}
+
+	/* SECTION 4: Set heading font face, sizes, and color.
+	   Differentiate your headings from your body text.
+	   Perhaps use a large sans-serif for distinction. */
+	h1,h2,h3,h4,h5,h6 {
+		color: #000!important;
+		height: auto;
+		line-height: normal;
+		font-family: Georgia, "Times New Roman", Times, serif !important;
+		text-shadow: 0 0 0 #000 !important;
+		text-align: left;
+		letter-spacing: normal;
+	}
+	/* Need to reduce the size of the fonts for printing */
+	h1 { font-size: 28pt !important;  }
+	h2 { font-size: 24pt !important; }
+	h3 { font-size: 22pt !important; }
+	h4 { font-size: 22pt !important; font-variant: small-caps; }
+	h5 { font-size: 21pt !important; }
+	h6 { font-size: 20pt !important; font-style: italic; }
+
+	/* SECTION 5: Make hyperlinks more usable.
+	   Ensure links are underlined, and consider appending
+	   the URL to the end of the link for usability. */
+	a:link,
+	a:visited {
+		color: #000 !important;
+		font-weight: bold;
+		text-decoration: underline;
+	}
+	/*
+	.reveal a:link:after,
+	.reveal a:visited:after {
+		content: " (" attr(href) ") ";
+		color: #222 !important;
+		font-size: 90%;
+	}
+	*/
+
+
+	/* SECTION 6: more reveal.js specific additions by @skypanther */
+	ul, ol, div, p {
+		visibility: visible;
+		position: static;
+		width: auto;
+		height: auto;
+		display: block;
+		overflow: visible;
+		margin: 0;
+		text-align: left !important;
+	}
+	.reveal pre,
+	.reveal table {
+		margin-left: 0;
+		margin-right: 0;
+	}
+	.reveal pre code {
+		padding: 20px;
+		border: 1px solid #ddd;
+	}
+	.reveal blockquote {
+		margin: 20px 0;
+	}
+	.reveal .slides {
+		position: static !important;
+		width: auto !important;
+		height: auto !important;
+
+		left: 0 !important;
+		top: 0 !important;
+		margin-left: 0 !important;
+		margin-top: 0 !important;
+		padding: 0 !important;
+		zoom: 1 !important;
+
+		overflow: visible !important;
+		display: block !important;
+
+		text-align: left !important;
+		-webkit-perspective: none;
+		   -moz-perspective: none;
+		    -ms-perspective: none;
+		        perspective: none;
+
+		-webkit-perspective-origin: 50% 50%;
+		   -moz-perspective-origin: 50% 50%;
+		    -ms-perspective-origin: 50% 50%;
+		        perspective-origin: 50% 50%;
+	}
+	.reveal .slides section {
+		visibility: visible !important;
+		position: static !important;
+		width: auto !important;
+		height: auto !important;
+		display: block !important;
+		overflow: visible !important;
+
+		left: 0 !important;
+		top: 0 !important;
+		margin-left: 0 !important;
+		margin-top: 0 !important;
+		padding: 60px 20px !important;
+		z-index: auto !important;
+
+		opacity: 1 !important;
+
+		page-break-after: always !important;
+
+		-webkit-transform-style: flat !important;
+		   -moz-transform-style: flat !important;
+		    -ms-transform-style: flat !important;
+		        transform-style: flat !important;
+
+		-webkit-transform: none !important;
+		   -moz-transform: none !important;
+		    -ms-transform: none !important;
+		        transform: none !important;
+
+		-webkit-transition: none !important;
+		   -moz-transition: none !important;
+		    -ms-transition: none !important;
+		        transition: none !important;
+	}
+	.reveal .slides section.stack {
+		padding: 0 !important;
+	}
+	.reveal section:last-of-type {
+		page-break-after: avoid !important;
+	}
+	.reveal section .fragment {
+		opacity: 1 !important;
+		visibility: visible !important;
+
+		-webkit-transform: none !important;
+		   -moz-transform: none !important;
+		    -ms-transform: none !important;
+		        transform: none !important;
+	}
+	.reveal section img {
+		display: block;
+		margin: 15px 0px;
+		background: rgba(255,255,255,1);
+		border: 1px solid #666;
+		box-shadow: none;
+	}
+
+	.reveal section small {
+		font-size: 0.8em;
+	}
+
+}  
+</script>
+
+
+<script id="pdf-css" type="application/dynamic-css">
+    
+/**
+ * This stylesheet is used to print reveal.js
+ * presentations to PDF.
+ *
+ * https://github.com/hakimel/reveal.js#pdf-export
+ */
+
+* {
+	-webkit-print-color-adjust: exact;
+}
+
+body {
+	margin: 0 auto !important;
+	border: 0;
+	padding: 0;
+	float: none !important;
+	overflow: visible;
+}
+
+html {
+	width: 100%;
+	height: 100%;
+	overflow: visible;
+}
+
+/* Remove any elements not needed in print. */
+.nestedarrow,
+.reveal .controls,
+.reveal .progress,
+.reveal .playback,
+.reveal.overview,
+.fork-reveal,
+.share-reveal,
+.state-background {
+	display: none !important;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	text-shadow: 0 0 0 #000 !important;
+}
+
+.reveal pre code {
+	overflow: hidden !important;
+	font-family: Courier, 'Courier New', monospace !important;
+}
+
+ul, ol, div, p {
+	visibility: visible;
+	position: static;
+	width: auto;
+	height: auto;
+	display: block;
+	overflow: visible;
+	margin: auto;
+}
+.reveal {
+	width: auto !important;
+	height: auto !important;
+	overflow: hidden !important;
+}
+.reveal .slides {
+	position: static;
+	width: 100%;
+	height: auto;
+
+	left: auto;
+	top: auto;
+	margin: 0 !important;
+	padding: 0 !important;
+
+	overflow: visible;
+	display: block;
+
+	-webkit-perspective: none;
+	   -moz-perspective: none;
+	    -ms-perspective: none;
+	        perspective: none;
+
+	-webkit-perspective-origin: 50% 50%; /* there isn't a none/auto value but 50-50 is the default */
+	   -moz-perspective-origin: 50% 50%;
+	    -ms-perspective-origin: 50% 50%;
+	        perspective-origin: 50% 50%;
+}
+
+.reveal .slides section {
+	page-break-after: always !important;
+
+	visibility: visible !important;
+	position: relative !important;
+	display: block !important;
+	position: relative !important;
+
+	margin: 0 !important;
+	padding: 0 !important;
+	box-sizing: border-box !important;
+	min-height: 1px;
+
+	opacity: 1 !important;
+
+	-webkit-transform-style: flat !important;
+	   -moz-transform-style: flat !important;
+	    -ms-transform-style: flat !important;
+	        transform-style: flat !important;
+
+	-webkit-transform: none !important;
+	   -moz-transform: none !important;
+	    -ms-transform: none !important;
+	        transform: none !important;
+}
+
+.reveal section.stack {
+	margin: 0 !important;
+	padding: 0 !important;
+	page-break-after: avoid !important;
+	height: auto !important;
+	min-height: auto !important;
+}
+
+.reveal img {
+	box-shadow: none;
+}
+
+.reveal .roll {
+	overflow: visible;
+	line-height: 1em;
+}
+
+/* Slide backgrounds are placed inside of their slide when exporting to PDF */
+.reveal section .slide-background {
+	display: block !important;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	z-index: -1;
+}
+
+/* All elements should be above the slide-background */
+.reveal section>* {
+	position: relative;
+	z-index: 1;
+}
+
+/* Display slide speaker notes when 'showNotes' is enabled */
+.reveal .speaker-notes-pdf {
+	display: block;
+	width: 100%;
+	max-height: none;
+	left: auto;
+	top: auto;
+	z-index: 100;
+}
+
+/* Display slide numbers when 'slideNumber' is enabled */
+.reveal .slide-number-pdf {
+	display: block;
+	position: absolute;
+	font-size: 14px;
+}
+
+</script>
+
+
+<script>
+var style = document.createElement( 'style' );
+style.type = 'text/css';
+var style_script_id = window.location.search.match( /print-pdf/gi ) ? 'pdf-css' : 'paper-css';
+var style_script = document.getElementById(style_script_id).text;
+style.innerHTML = style_script;
+document.getElementsByTagName('head')[0].appendChild(style);
+</script>
+
+    <script src="sesion_2_files/header-attrs-2.25/header-attrs.js"></script>
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+<section>
+    <h1 class="title">Curso de R</h1>
+  <h1 class="subtitle">Webscrapeando a rede</h1>
+    <h2 class="author">Antón Blanco Vilariño</h2>
+    <h3 class="date">2 de febreiro, 2024</h3>
+</section>
+
+<section class="slide level2">
+
+<!-- KAte, Tango, espresso, zenburn ou null son validos  como highlight -->
+</section>
+<section>
+<section id="en-que-consite-o-webscraping"
+class="title-slide slide level1">
+<h1>En que consite o <span style=" color: #FCF174;">
+webscraping</span>?</h1>
+<p>É unha <span style=" color: #FCF174;"> linguaxe de programación
+</span>, é un <span style=" color: #FCF174;"> software </span> e, sobre
+todo, unha <span style=" color: #FCF174;"> ferramenta </span> para
+analizar datos e aplicar unha gran cantidade de técnicas estatísticas a
+estes.</p>
+<div class="fragment">
+<p><span style="   color: #FC74A4;"> Entre outros moitos usos
+</span></p>
+</div>
+</section>
+<section id="usos-habituais" class="slide level2">
+<h2>Usos habituais</h2>
+<div class="fragment">
+<p>Limpar datos, é dicir, facelos máis lexibles</p>
+</div>
+<div class="fragment">
+<p>Aplicarlle diversas técnicas</p>
+</div>
+<div class="fragment">
+<p>Debuxalos</p>
+</div>
+<div class="fragment">
+<p>Crear documentos</p>
+</div>
+<div class="fragment">
+<p>Crear aplicacións</p>
+</div>
+</section>
+<section id="cómo-se-usa" class="slide level2">
+<h2>Cómo se usa?</h2>
+<div class="fragment">
+<ol type="1">
+<li><p>Instalando o sofware <strong>R</strong> na páxina: <br> <a
+href="https://www.r-project.org/"
+class="uri">https://www.r-project.org/</a>.</p></li>
+<li><p>Engadindo un <strong>IDE</strong> (<em>integrated development
+environment </em>) para un uso máis sinxelo. Nós usaremos <a
+href="https://posit.co/download/rstudio-desktop/">RStudio</a>.</p></li>
+</ol>
+</div>
+</section></section>
+<section>
+<section id="dentro-de-rstudio" class="title-slide slide level1"
+data-background-image="imaxes/01_paneles_rstudio.png">
+<h1 data-background-image="imaxes/01_paneles_rstudio.png">Dentro de
+<span style=" color: #FCF174;"> RStudio </span></h1>
+
+</section>
+<section id="panel-espazo-de-traballo" class="slide level2"
+data-background-image="imaxes/02_panel_espazo_traballo.png">
+<h2 data-background-image="imaxes/02_panel_espazo_traballo.png">Panel
+<span style=" color: #FCF174;"> espazo de traballo </span></h2>
+</section>
+<section id="panel-consola" class="slide level2"
+data-background-image="imaxes/03_panel_consola.png">
+<h2 data-background-image="imaxes/03_panel_consola.png">Panel <span
+style=" color: #FCF174;"> Consola </span></h2>
+</section>
+<section id="panel-entorno-e-historial" class="slide level2"
+data-background-image="imaxes/04_panel_entorno_historial.png">
+<h2 data-background-image="imaxes/04_panel_entorno_historial.png">Panel
+<span style=" color: #FCF174;"> Entorno e historial </span></h2>
+</section>
+<section id="panel-arquivos-e-plots" class="slide level2"
+data-background-image="imaxes/05_panel_arquivos_plots.png">
+<h2 data-background-image="imaxes/05_panel_arquivos_plots.png">Panel
+<span style=" color: #FCF174;"> arquivos e plots </span></h2>
+</section></section>
+<section id="r-e-os-paquetes" class="title-slide slide level1">
+<h1>R e os <span style=" color: #FCF174;"> paquetes </span></h1>
+<p>Son elementos básicos onde está a información primordial desta
+linguaxe: <span style=" color: #FC74A4;"> as funcións </span></p>
+<p><strong>Onde atopalos?</strong></p>
+<ul>
+<li><a href="https://cran.r-project.org/">CRAN</a></li>
+</ul>
+<p><img src="imaxes/06_cran.png" alt="CRAN" class="center"></p>
+<ul>
+<li><a href="https://github.com/rstudio/revealjs">Github</a></li>
+</ul>
+<p><img src="imaxes/07_github.png" alt="CRAN" class="center" width = "100" height = "100" ></p>
+</section>
+
+<section>
+<section id="boas-prácticas" class="title-slide slide level1">
+<h1>Boas <span style=" color: #FCF174;"> prácticas </span></h1>
+
+</section>
+<section id="section" class="slide level2"
+data-background-image="imaxes/08_estrutura_directorios.png">
+<h2 data-background-image="imaxes/08_estrutura_directorios.png"></h2>
+</section>
+<section id="nomes-dos-arquivos" class="slide level2">
+<h2>Nomes dos arquivos</h2>
+<ul>
+<li><p>Evita usar <span style=" color: #FCF174;"> espazos </span> e
+reempraza estes por <span style=" color: #FCF174;"> guións baixos
+</span>.</p></li>
+<li><p>Evita usar caracteres especiais: <span style=" color: #FCF174;">
+@£$%^&amp;*(:/) </span>.</p></li>
+<li><p>Se usas versións dun arquivo e tés máis de 9 emprega nas
+anteriores <span style=" color: #FCF174;"> 01 </span>, <span
+style=" color: #FCF174;"> 02 </span>,<span style=" color: #FCF174;"> 03
+</span>,… E se tés máis de 99 emprega <span style=" color: #FCF174;">
+001 </span>, <span style=" color: #FCF174;"> 002 </span>,<span
+style=" color: #FCF174;"> 003 </span>,…</p></li>
+<li><p>Nomea as datas seguindo o formato <span style=" color: #FCF174;">
+ISO 8601 </span> (<strong>YYYY-MM-DD</strong> ou
+<strong>YYYYMMDD</strong>).</p></li>
+<li><p>Nunca uses o sufixo <span style=" color: #FCF174;"> final </span>
+en ningún dos teus arquivos (<em>Nunca é o último!</em>).</p></li>
+</ul>
+</section></section>
+<section>
+<section id="operadores" class="title-slide slide level1">
+<h1>Operadores</h1>
+<p>Son símbolos que lle indican a <strong>R</strong> que tarefas debe
+realizar.</p>
+</section>
+<section id="operadores-aritméticos" class="slide level2">
+<h2>Operadores aritméticos</h2>
+<table>
+<thead>
+<tr class="header">
+<th>Operador</th>
+<th>Operación</th>
+<th>Exemplo</th>
+<th>Resultado</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>+</td>
+<td>Suma</td>
+<td>5 + 3</td>
+<td>8</td>
+</tr>
+<tr class="even">
+<td>-</td>
+<td>Resta</td>
+<td>5 - 3</td>
+<td>2</td>
+</tr>
+<tr class="odd">
+<td>*</td>
+<td>Multiplicación</td>
+<td>5 * 3</td>
+<td>18</td>
+</tr>
+<tr class="even">
+<td>/</td>
+<td>División</td>
+<td>5 /3</td>
+<td>1.666667</td>
+</tr>
+<tr class="odd">
+<td>^</td>
+<td>Potencia</td>
+<td>5 ^ 3</td>
+<td>125</td>
+</tr>
+<tr class="even">
+<td>%%</td>
+<td>División enteira</td>
+<td>5 %% 3</td>
+<td>2</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="operadores-relacionais" class="slide level2">
+<h2>Operadores relacionais</h2>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: center;">Operador</th>
+<th style="text-align: center;">Comparación</th>
+<th style="text-align: center;">Exemplo</th>
+<th style="text-align: center;">Resultado</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">&lt;</td>
+<td style="text-align: center;">Menor que</td>
+<td style="text-align: center;">5 &lt; 3</td>
+<td style="text-align: center;">FALSE</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">&lt;=</td>
+<td style="text-align: center;">Menor ou igual que</td>
+<td style="text-align: center;">5 &lt;= 3</td>
+<td style="text-align: center;">FALSE</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">&gt;</td>
+<td style="text-align: center;">Maior que</td>
+<td style="text-align: center;">5 &gt; 3</td>
+<td style="text-align: center;">TRUE</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">&gt;=</td>
+<td style="text-align: center;">Maior ou igual que</td>
+<td style="text-align: center;">5 &gt;= 3</td>
+<td style="text-align: center;">TRUE</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">==</td>
+<td style="text-align: center;">Exactamente igual que</td>
+<td style="text-align: center;">5 == 3</td>
+<td style="text-align: center;">FALSE</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">!=</td>
+<td style="text-align: center;">Non é igual que</td>
+<td style="text-align: center;">5 != 3</td>
+<td style="text-align: center;">TRUE</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="operadores-lóxicos" class="slide level2">
+<h2>Operadores lóxicos</h2>
+<table>
+<colgroup>
+<col style="width: 16%" />
+<col style="width: 45%" />
+<col style="width: 22%" />
+<col style="width: 16%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;">Operador</th>
+<th style="text-align: center;">Comparación</th>
+<th style="text-align: center;">Exemplo</th>
+<th style="text-align: center;">Resultado</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">x | y</td>
+<td style="text-align: center;">x Ó y é verdadeiro</td>
+<td style="text-align: center;">TRUE | FALSE</td>
+<td style="text-align: center;">TRUE</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">x &amp; y</td>
+<td style="text-align: center;">x Y y son verdadeiros</td>
+<td style="text-align: center;">TRUE &amp; FALSE</td>
+<td style="text-align: center;">FALSE</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">!x</td>
+<td style="text-align: center;">x non é verdadeiro (negación)</td>
+<td style="text-align: center;">!TRUE</td>
+<td style="text-align: center;">FALSE</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">isTRUE(x)</td>
+<td style="text-align: center;">x é verdadeiro (afirmación)</td>
+<td style="text-align: center;">isTRUE(TRUE)</td>
+<td style="text-align: center;">TRUE</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="operadores-de-asignación" class="slide level2">
+<h2>Operadores de asignación</h2>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: center;">Operador</th>
+<th style="text-align: center;">Operación</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">&lt;-</td>
+<td style="text-align: center;">Asigna un valor a unha variable</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">=</td>
+<td style="text-align: center;">Asigna un valor a unha variable</td>
+</tr>
+</tbody>
+</table>
+</section></section>
+<section id="tipos-de-datos" class="title-slide slide level1">
+<h1>Tipos de datos</h1>
+<table>
+<colgroup>
+<col style="width: 39%" />
+<col style="width: 20%" />
+<col style="width: 39%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;"><span style=" color: #FCF174;"> Tipo
+</span></th>
+<th style="text-align: left;"><span style=" color: #FCF174;"> Exemplo
+</span></th>
+<th style="text-align: left;"><span style=" color: #FCF174;"> Nome en
+inglés </span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Enteiro</td>
+<td style="text-align: left;"><strong>1</strong></td>
+<td style="text-align: left;"><em>integer</em></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Numérico</td>
+<td style="text-align: left;"><strong>1.3</strong></td>
+<td style="text-align: left;"><em>numeric</em></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Cadea de texto</td>
+<td style="text-align: left;"><strong>“un”</strong></td>
+<td style="text-align: left;"><em>character</em></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Factor</td>
+<td style="text-align: left;"><strong>un</strong></td>
+<td style="text-align: left;"><em>factor</em></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Lóxico</td>
+<td style="text-align: left;"><strong>TRUE</strong></td>
+<td style="text-align: left;"><em>logical</em></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Faltante</td>
+<td style="text-align: left;"><strong>NA</strong></td>
+<td style="text-align: left;"><em>NA</em></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Baleiro</td>
+<td style="text-align: left;"><strong>NULL</strong></td>
+<td style="text-align: left;"><em>null</em></td>
+</tr>
+</tbody>
+</table>
+</section>
+
+<section>
+<section id="tipos-de-estructuras" class="title-slide slide level1">
+<h1>Tipos de estructuras</h1>
+<ul>
+<li>Escalares e vectores.</li>
+<li>Matrices e arrays.</li>
+<li>Listas.</li>
+<li>Data frames.</li>
+</ul>
+</section>
+<section id="vectores" class="slide level2">
+<h2>Vectores</h2>
+<pre class="r"><code>vector &lt;- c(1 , 2, &quot;a&quot;)
+
+vector</code></pre>
+<pre><code>## [1] &quot;1&quot; &quot;2&quot; &quot;a&quot;</code></pre>
+</section>
+<section id="matrices" class="slide level2">
+<h2>Matrices</h2>
+<pre class="r"><code>matriz &lt;- matrix(c(2, 0, 1, 1), nrow = 2) 
+
+matriz</code></pre>
+<pre><code>##      [,1] [,2]
+## [1,]    2    1
+## [2,]    0    1</code></pre>
+</section>
+<section id="factores" class="slide level2">
+<h2>Factores</h2>
+<pre class="r"><code>factor &lt;- factor(&quot;a&quot;)
+
+factor</code></pre>
+<pre><code>## [1] a
+## Levels: a</code></pre>
+</section>
+<section id="data-frames" class="slide level2">
+<h2>Data frames</h2>
+<pre class="r"><code>mi_df &lt;- data.frame(
+  &quot;entero&quot; = 1:4, 
+  &quot;factor&quot; = c(&quot;a&quot;, &quot;b&quot;, &quot;c&quot;, &quot;d&quot;), 
+  &quot;numero&quot; = c(1.2, 3.4, 4.5, 5.6),
+  &quot;cadena&quot; = as.character(c(&quot;a&quot;, &quot;b&quot;, &quot;c&quot;, &quot;d&quot;))
+)
+
+mi_df</code></pre>
+<pre><code>##   entero factor numero cadena
+## 1      1      a    1.2      a
+## 2      2      b    3.4      b
+## 3      3      c    4.5      c
+## 4      4      d    5.6      d</code></pre>
+</section>
+<section id="listas" class="slide level2">
+<h2>Listas</h2>
+<pre class="r"><code>lista &lt;- list(c(&quot;black&quot;, &quot;yellow&quot;, &quot;orange&quot;),
+               c(TRUE, TRUE, FALSE, TRUE, FALSE, FALSE),
+               matrix(1:6, nrow = 3))
+
+lista</code></pre>
+<pre><code>## [[1]]
+## [1] &quot;black&quot;  &quot;yellow&quot; &quot;orange&quot;
+## 
+## [[2]]
+## [1]  TRUE  TRUE FALSE  TRUE FALSE FALSE
+## 
+## [[3]]
+##      [,1] [,2]
+## [1,]    1    4
+## [2,]    2    5
+## [3,]    3    6</code></pre>
+</section></section>
+<section>
+<section id="elementos-de-programación"
+class="title-slide slide level1">
+<h1>Elementos de programación</h1>
+
+</section>
+<section id="declaración-condicional" class="slide level2">
+<h2>Declaración condicional</h2>
+<p><strong>if</strong> (condicion) {</p>
+<p><em>Execútase o código se a condición é TRUE</em></p>
+<p>} <strong>else</strong> {</p>
+<p><em>Execútase o código se a condición é FALSE</em></p>
+<p>}</p>
+</section>
+<section id="bucle" class="slide level2">
+<h2>Bucle</h2>
+<pre class="r"><code>for (variable in vector) {
+  
+}</code></pre>
+<p><strong>Exemplo</strong></p>
+<pre class="r"><code>for (i in 1:5) {
+  print(i)
+}</code></pre>
+<pre><code>## [1] 1
+## [1] 2
+## [1] 3
+## [1] 4
+## [1] 5</code></pre>
+</section>
+<section id="función" class="slide level2">
+<h2>Función</h2>
+<pre class="r"><code>nome_da_funcion &lt;- function(argumento_1, argumento_2) {
+  
+  # expresión
+  
+}
+
+nome_da_funcion(argumento_1, argumento_2)</code></pre>
+<pre><code>## NULL</code></pre>
+</section></section>
+<section id="referencias" class="title-slide slide level1">
+<h1>Referencias</h1>
+<ul>
+<li><a href="https://jorgeromero.net/web-scraping-usando-r/">Guía para
+principiantes de webscraping con R</a></li>
+<li><a
+href="https://webscrapingsite.com/es/resources/web-scraping-r/">Guía
+completa de webscraping en R con rvest</a></li>
+<li><a
+href="https://programminghistorian.org/es/lecciones/introduccion-al-web-scraping-usando-r">Introdución
+ao webscraping con R</a></li>
+</ul>
+</section>
+    </div>
+  </div>
+
+  <script src="sesion_2_files/reveal.js-3.3.0.1/lib/js/head.min.js"></script>
+  <script src="sesion_2_files/reveal.js-3.3.0.1/js/reveal.js"></script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        // Display controls in the bottom right corner
+        controls: true,
+        // Display a presentation progress bar
+        progress: true,
+        // Display the page number of the current slide
+        slideNumber: true,
+        // Push each slide change to the browser history
+        history: true,
+        // Enable keyboard shortcuts for navigation
+        keyboard: true,
+        // Enable the slide overview mode
+        overview: true,
+        // Vertical centering of slides
+        center: true,
+        // Enables touch navigation on devices with touch input
+        touch: true,
+        // Turns fragments on and off globally
+        fragments: true,
+        // Flags if we should show a help overlay when the questionmark
+        // key is pressed
+        help: true,
+        // Number of milliseconds between automatically proceeding to the
+        // next slide, disabled when set to 0, this value can be overwritten
+        // by using a data-autoslide attribute on your slides
+        autoSlide: 0,
+        // Stop auto-sliding after user input
+        autoSlideStoppable: true,
+        // Opens links in an iframe preview overlay
+        previewLinks: true,
+        // Transition style
+        transition: 'default', // none/fade/slide/convex/concave/zoom
+        // Transition speed
+        transitionSpeed: 'default', // default/fast/slow
+        // Transition style for full page slide backgrounds
+        backgroundTransition: 'default', // none/fade/slide/convex/concave/zoom
+        // Number of slides away from the current that are visible
+        viewDistance: 3,
+
+
+
+        // Optional reveal.js plugins
+        dependencies: [
+        ]
+      });
+    </script>
+  <!-- dynamically load mathjax for compatibility with self-contained -->
+  <script>
+    (function () {
+      var script = document.createElement("script");
+      script.type = "text/javascript";
+      script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+      document.getElementsByTagName("head")[0].appendChild(script);
+    })();
+  </script>
+
+<script>
+  (function() {
+    if (window.jQuery) {
+      Reveal.addEventListener( 'slidechanged', function(event) {  
+        window.jQuery(event.previousSlide).trigger('hidden');
+        window.jQuery(event.currentSlide).trigger('shown');
+      });
+    }
+  })();
+</script>
+
+
+  </body>
+</html>
