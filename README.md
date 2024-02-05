@@ -7,7 +7,7 @@ Será unha sesión introdutoria de **R** cunha pequena presentación e un exempl
 
 A **presentación** da primeira sesión atópase na carpeta **rmd**.
 
-## Sesión 1
+## Sesión 2
 
 Será unha sesión introdutoria sobre **webscraping** cunha pequena presentación e unha serie de exemplos de *webscraping* estático, descargar de arquivos, lectura de ficheiros na rede e unha breve introdución ás *regular expressions*.
 
